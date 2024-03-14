@@ -1,7 +1,12 @@
-const router = require('express').Router()
+// controllers/places.js
+const express = require('express');
+const router = express.Router();
 
+// Route for /places
 router.get('/', (req, res) => {
-    res.send('GET /places')
-})
+    res.send('Places index page');
+});
 
-module.exports = router
+// Add more routes for places as needed...
+
+module.exports = router;
