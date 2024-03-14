@@ -1,15 +1,10 @@
-// views/default.jsx
 const React = require('react');
 
-function Def(html) {
+function Def(props) {
     return (
         <html>
-            <head>
-                <title>My App</title>
-            </head>
-            <body>
-                {html.children}
-            </body>
+            <head><title>My App</title></head>
+            <body>{props.children}</body>
         </html>
     );
 }

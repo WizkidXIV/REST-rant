@@ -1,6 +1,5 @@
-// views/home.jsx
 const React = require('react');
-const Def = require('./default'); // Assuming you have a default layout
+const Def = require('./default'); 
 
 function Home() {
     return (
