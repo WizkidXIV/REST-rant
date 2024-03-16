@@ -1,12 +1,17 @@
-const React = require('react');
+const React = require('react')
 
-function Def(props) {
+function Def(html) {
     return (
         <html>
-            <head><title>My App</title></head>
-            <body>{props.children}</body>
+            <head>
+                <title>Title</title>
+                <link rel="stylesheet" href="public\css\style.css"/>
+            </head>
+            <body>
+                {html.children}
+            </body>
         </html>
-    );
+    )
 }
 
-module.exports = Def;
+module.exports = Def
