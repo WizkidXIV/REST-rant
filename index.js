@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const placesRouter = require('./controllers/places'); 
+const placesRouter = require('./controllers/places');
 
 // Set up to parse URL-encoded form data
 app.use(express.urlencoded({ extended: true }));
@@ -16,6 +16,11 @@ app.engine('jsx', require('express-react-views').createEngine());
 
 // Use the places router for all requests starting with '/places'
 app.use('/places', placesRouter);
+
+// Define a root route handler
+app.get('/', (req, res) => {
+    res.render('home'); 
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;

@@ -12,6 +12,7 @@ function Def({ children }) {
                     integrity="sha384-JcKb8q3pQir5bZr7+UdhAXP9v+O5y5auF6TX5Qp6L+gAoMwIlgIeYwUOaE5YJnX"
                     crossOrigin="anonymous"
                 />
+                <link rel="stylesheet" href="/style.css" />
             </head>
             <body>
                 {children}
