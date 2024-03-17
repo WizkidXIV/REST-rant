@@ -1,25 +1,26 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
+// app.js or index.js
 
-app.set('views', __dirname + '/views')
-console.log('Setting up view engine...');
+const express = require('express');
+const app = express();
+const path = require('path');
+const placesRouter = require('./controllers/places'); // Adjust the path to your places router file
+
+// Set up to parse URL-encoded form data
+app.use(express.urlencoded({ extended: true }));
+
+// Set up static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set the view engine
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
-console.log('View engine set up successfully.');
-app.use(express.static('public'));
-app.use('/places', require('./controllers/places'))
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
+// Use the places router for all requests starting with '/places'
+app.use('/places', placesRouter);
 
-app.get('*', (req, res) => {
-    res.render('error404')
-})
+// Define other routes...
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server is running on port ${process.env.PORT || 3000}`);
-});
-
-
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
