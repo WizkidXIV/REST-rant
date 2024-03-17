@@ -1,17 +1,18 @@
-const React = require('react')
+const React = require('react');
 
-function Def(html) {
+function Def({ children }) {
     return (
         <html>
             <head>
                 <title>Title</title>
-                <link rel="stylesheet" href="public/css/style.css"/>
+                {/* Include Bootstrap CSS from CDN */}
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3pQir5bZr7+UdhAXP9v+O5y5auF6TX5Qp6L+gAoMwIlgIeYwUOaE5YJnX" crossorigin="anonymous" />
             </head>
             <body>
-                {html.children}
+                {children}
             </body>
         </html>
-    )
+    );
 }
 
-module.exports = Def
+module.exports = Def;
