@@ -3,7 +3,7 @@ const Def = require('../default.jsx');
 function index (data) {
   let placesFormatted = data.places.map((place, index) => {
   return (
-    <div key={place.name} className="col-sm-6"> {/* Assuming each place has a unique name */}
+    <div key={place.name} className="col-sm-6">
       <h2>{place.name}</h2>
       <p className="text-center">
         {place.cuisines}
