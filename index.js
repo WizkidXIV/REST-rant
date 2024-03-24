@@ -1,11 +1,15 @@
 require('dotenv').config()
 const express = require('express');
+const methodOverride = require('method-override')
 const app = express();
 const path = require('path');
 const placesRouter = require('./controllers/places');
 
 // Set up to parse URL-encoded form data
 app.use(express.urlencoded({ extended: true }));
+
+// Set up override for put/delete methods 
+app.use(methodOverride('_method'))
 
 // Set up static files
 app.use(express.static(path.join(__dirname, 'public')));
