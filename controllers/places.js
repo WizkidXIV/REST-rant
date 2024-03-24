@@ -1,62 +1,72 @@
-// controllers/places.js
-
 const express = require('express');
 const router = express.Router();
-const places = require('../models/places.js')
+const places = require('../models/places.js');
+
+if (!places.every(place => place.hasOwnProperty('id'))) {
+    places.forEach((place, index) => {
+        place.id = index + 1;
+    });
+}
+
+function findPlace(req, res, next) {
+    const id = parseInt(req.params.id, 10); 
+    if (isNaN(id) || id < 0 || id >= places.length) {
+        return res.render('error404'); 
+    }
+    res.locals.place = places[id];
+    next();
+}
 
 router.post('/', (req, res) => {
-    console.log(req.body)
-    if (!req.body.pic) {
-        // Default image if one is not provided
-        req.body.pic = 'images/sushi-cat.jpg'
-    }
-    if (!req.body.city) {
-        req.body.city = 'Anytown'
-    }
-    if (!req.body.state) {
-        req.body.state = 'USA'
-    }
-    places.push(req.body)
-    res.redirect('/places')
-})
-
-
-// GET route to display the form for a new place
-router.get('/new', (req, res) => {
-    res.render('places/new'); 
+    let newId = places.length > 0 ? Math.max(...places.map(place => place.id)) + 1 : 1;
+    let newPlace = {
+        id: newId,
+        name: req.body.name,
+        pic: req.body.pic || 'images/sushi-cat.jpg',
+        city: req.body.city || 'Anytown',
+        state: req.body.state || 'USA',
+        cuisines: req.body.cuisines
+    };
+    places.push(newPlace);
+    res.redirect('/places');
 });
 
-// GET route for the main list of places
+router.get('/new', (req, res) => {
+    res.render('places/new');
+});
+
 router.get('/', (req, res) => {
     res.render('places/index', { places });
 });
 
-// GET route for the variable ID places
-router.get('/:id', (req, res) => {
-    let id = Number(req.params.id)
-    if (isNaN(id)) {
-        res.render('error404')
-    }
-    else if (!places[id]) {
-        res.render('error404')
-    }
-    else {
-        res.render('places/show', { place: places[id], id })
-    }
-})
+router.get('/:id', findPlace, (req, res) => {
+    res.render('places/show', { place: res.locals.place, id: req.params.id });
+});
 
-router.delete('/:id', (req, res) => {
-    let id = Number(req.params.id)
-    if (isNaN(id)) {
-        res.render('error404')
+router.get('/:id/edit', findPlace, (req, res) => {
+    res.render('places/edit', { place: res.locals.place });
+});
+
+router.put('/:id', findPlace, (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const index = places.findIndex(place => place.id === id);
+    if (index !== -1) {
+        places[index] = { ...places[index], ...req.body };
+        res.redirect(`/places/${id}`);
+    } else {
+        res.render('error404');
     }
-    else if (!places[id]) {
-        res.render('error404')
+});
+
+router.delete('/:id', findPlace, (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    const index = places.findIndex(place => place.id === id);
+    if (index !== -1) {
+        places.splice(index, 1);
+        res.redirect('/places');
+    } else {
+        res.render('error404');
     }
-    else {
-        places.splice(id, 1)
-        res.redirect('/places')
-    }
-})
+});
 
 module.exports = router;
