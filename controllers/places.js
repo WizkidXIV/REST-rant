@@ -16,7 +16,6 @@ router.get('/new', (req, res) => {
     res.render('places/new');
 });
 
-
 router.post('/', (req, res) => {
     db.Place.create(req.body)
         .then(() => {
