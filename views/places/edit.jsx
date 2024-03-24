@@ -16,7 +16,7 @@ function edit_form(data) {
                             className="form-control"
                             id="name"
                             name="name"
-                            defaultValue={data.place.name} 
+                            defaultValue={data.place.name}
                             required />
                     </div>
                     <div className="form-group">
@@ -25,7 +25,8 @@ function edit_form(data) {
                             className="form-control"
                             id="pic"
                             name="pic"
-                            defaultValue={data.place.pic || ''} /> 
+                            defaultValue={data.place.pic || ''}
+                            type="text" />  
                     </div>
                     <div className="form-group">
                         <label htmlFor="city">City</label>
@@ -33,7 +34,8 @@ function edit_form(data) {
                             className="form-control"
                             id="city"
                             name="city"
-                            defaultValue={data.place.city || ''} />
+                            defaultValue={data.place.city || ''}
+                            type="text" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="state">State</label>
@@ -41,7 +43,8 @@ function edit_form(data) {
                             className="form-control"
                             id="state"
                             name="state"
-                            defaultValue={data.place.state || ''} />
+                            defaultValue={data.place.state || ''}
+                            type="text" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="cuisines">Cuisines</label>
@@ -50,9 +53,10 @@ function edit_form(data) {
                             id="cuisines"
                             name="cuisines"
                             defaultValue={data.place.cuisines}
-                            required />
+                            required
+                            type="text" />
                     </div>
-                    <input className="btn btn-primary" type="submit" value="Edit Place" />
+                    <input className="btn btn-primary" type="submit" value="Save Changes" />
                 </form>
             </main>
         </Def>
