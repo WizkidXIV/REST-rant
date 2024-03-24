@@ -12,9 +12,22 @@ function Def({ children }) {
                     integrity="sha384-JcKb8q3pQir5bZr7+UdhAXP9v+O5y5auF6TX5Qp6L+gAoMwIlgIeYwUOaE5YJnX"
                     crossOrigin="anonymous"
                 />
-                <link rel="stylesheet" href="/style.css" />
+                <link rel="stylesheet" href="/css/style.css" />
             </head>
             <body>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/places">Places</a>
+                        </li>
+                        <li>
+                            <a href="/places/new">Add Place</a>
+                        </li>
+                    </ul>
+                </nav>
                 {children}
             </body>
         </html>
