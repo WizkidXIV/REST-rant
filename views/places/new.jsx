@@ -1,17 +1,21 @@
-const React = require('react')
-const Def = require('../default')
+const React = require('react');
+const Def = require('../default');
 
-let sumRatings = data.place.comments.reduce((tot, c) => {
-    return tot + c.stars
-}, 0)
-let averageRating = sumRatings / data.place.comments.length
-rating = (
-    <h3>
-        {Math.round(averageRating)} stars
-    </h3>
-)
+function new_form({ data }) { 
+    let sumRatings = 0;
+    let averageRating = 0;
 
-function new_form() {
+    if (data && data.place && data.place.comments && data.place.comments.length > 0) {
+        const sumRatings = data.place.comments.reduce((tot, c) => tot + c.stars, 0);
+        averageRating = sumRatings / data.place.comments.length;
+    }
+
+    const rating = (
+        <h3>
+            {Math.round(averageRating)} stars
+        </h3>
+    );
+
     return (
         <Def>
             <main>
@@ -39,14 +43,13 @@ function new_form() {
                     </div>
                     <input className="btn btn-primary" type="submit" value="Add Place" />
                     <div className="form-group">
-                        <label for="founded">Founded Year</label>
-                        <input type="number" className="form-control" id="founded" name="founded" value={new Date().getFullYear()} />
+                        <label htmlFor="founded">Founded Year</label>
+                        <input type="number" className="form-control" id="founded" name="founded" defaultValue={new Date().getFullYear()} />
                     </div>
-
                 </form>
             </main>
         </Def>
-    )
+    );
 }
 
-module.exports = new_form
+module.exports = new_form;
