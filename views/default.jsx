@@ -13,6 +13,7 @@ function Def({ children }) {
                     crossOrigin="anonymous"
                 />
                 <link rel="stylesheet" href="/css/style.css" />
+                <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
             </head>
             <body>
                 <nav>
