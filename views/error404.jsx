@@ -4,6 +4,9 @@ const Def = require('./default');
 function Error404() {
     return (
         <Def>
+            <head>
+                <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+            </head>
             <main>
                 <h1>404: Page Not Found</h1>
                 <p>Oops, we can't seem to find the page you're looking for.</p>

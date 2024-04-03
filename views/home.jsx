@@ -4,6 +4,9 @@ const Def = require('./default')
 function home() {
     return (
         <Def>
+            <head>
+                <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+            </head>
             <main>
                 <h1>HOME</h1>
                 <div>
