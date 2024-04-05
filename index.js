@@ -32,5 +32,7 @@ app.get('*', (req, res) => {
     res.render('error404');
 });
 
+const port = process.env.PORT; // Vercel will set this environment variable
+
 
 module.exports = app;
