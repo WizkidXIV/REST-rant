@@ -32,9 +32,5 @@ app.get('*', (req, res) => {
     res.render('error404');
 });
 
-const port = process.env.PORT; 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
 
 module.exports = app;
