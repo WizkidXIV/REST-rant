@@ -2,7 +2,7 @@
   "name": "rest-rant",
   "version": "1.0.0",
   "description": "",
-  "main": "home.jsx",
+  "main": "./home.jsx",
   "engines": {
     "node": ">18"
   },
@@ -20,7 +20,8 @@
     "mongoose": "^8.2.3",
     "nodemon": "^3.1.0",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "mongodb": "6.5.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-arrow-functions": "^7.24.1"
